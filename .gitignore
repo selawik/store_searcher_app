@@ -50,3 +50,4 @@ assets/words
 
 # Secure config
 ios/SecureConfig.xcconfig
+android/secure_config.properties
