@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:yandex_map_test/src/feature/map/domain/repository/map_repository.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 part 'map_bloc.freezed.dart';
@@ -7,7 +8,12 @@ part 'map_event.dart';
 part 'map_state.dart';
 
 class MapBloc extends Bloc<MapEvent, MapState> {
-  MapBloc() : super(const MapState.loading()) {
+  final MapRepository _repository;
+
+  MapBloc({
+    required MapRepository repository,
+  })  : _repository = repository,
+        super(const MapState.loading()) {
     on<_ZoomIn>(_onZoomIn);
     on<_ZoomOut>(_onZoomOut);
     on<_Started>(_onStarted);
