@@ -1,3 +1,6 @@
+import 'dart:async';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yandex_map_test/src/feature/map/data/data_provider/location_data_provider_impl.dart';
@@ -12,15 +15,20 @@ void main() {
     dataProvider: locationDataProvider,
   );
 
-  runApp(
-    MultiRepositoryProvider(
-      providers: [
-        RepositoryProvider<MapRepository>(
-          create: (context) => mapRepository,
-        ),
-      ],
-      child: const MyApp(),
+  runZonedGuarded(
+    () => runApp(
+      MultiRepositoryProvider(
+        providers: [
+          RepositoryProvider<MapRepository>(
+            create: (context) => mapRepository,
+          ),
+        ],
+        child: const MyApp(),
+      ),
     ),
+    (error, stack) {
+      log('Error', error: error, stackTrace: stack);
+    },
   );
 }
 
@@ -31,7 +39,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Yandex Map',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
