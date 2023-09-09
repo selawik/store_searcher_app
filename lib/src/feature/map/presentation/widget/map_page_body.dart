@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yandex_map_test/src/common/constant/app_colors.dart';
 import 'package:yandex_map_test/src/feature/map/presentation/bloc/map_bloc.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
@@ -28,30 +29,62 @@ class MapPageBody extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: 8,
+            left: 16,
             top: MediaQuery.paddingOf(context).top + 8,
-            child: CupertinoButton(
-              child: const Icon(Icons.menu),
-              onPressed: () {},
+            child: Container(
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.white,
+              ),
+              child: CupertinoButton(
+                child: const Icon(Icons.menu),
+                onPressed: () {},
+              ),
             ),
           ),
           Positioned(
-            right: 8,
-            bottom: MediaQuery.paddingOf(context).bottom + 8,
+            right: 16,
+            bottom: MediaQuery.paddingOf(context).bottom + 16,
             child: Column(
               children: [
                 CupertinoButton(
-                  child: const Icon(
-                    Icons.location_on,
+                  padding: EdgeInsets.zero,
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.white,
+                    ),
+                    child: const Icon(
+                      Icons.location_on,
+                    ),
                   ),
                   onPressed: () {},
                 ),
+                const SizedBox(height: 8),
                 CupertinoButton(
-                  child: const Icon(Icons.remove),
+                  padding: EdgeInsets.zero,
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.white,
+                    ),
+                    child: const Icon(Icons.remove),
+                  ),
                   onPressed: () => mapBloc.add(const MapEvent.zoomOut()),
                 ),
+                const SizedBox(height: 8),
                 CupertinoButton(
-                  child: const Icon(Icons.add),
+                  padding: EdgeInsets.zero,
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: AppColors.white,
+                    ),
+                    child: const Icon(Icons.add),
+                  ),
                   onPressed: () => mapBloc.add(const MapEvent.zoomIn()),
                 )
               ],
