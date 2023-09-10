@@ -114,6 +114,24 @@ class MapBloc extends Bloc<MapEvent, MapState> {
         newMapObjects.add(mapObject);
       }
 
+      newMapObjects.add(
+        PlacemarkMapObject(
+          mapId: MapObjectId('pyaterochka'),
+          point: Point(
+            latitude: 56.634532,
+            longitude: 47.9248314,
+          ),
+          opacity: 1,
+          icon: PlacemarkIcon.single(
+            PlacemarkIconStyle(
+              image: BitmapDescriptor.fromAssetImage(
+                AssetsCatalog.icPyaterochka,
+              ),
+            ),
+          ),
+        ),
+      );
+
       emit(currentState.copyWith(mapObjects: newMapObjects));
     } on LocationServiceIsDisabled catch (e, stack) {
       //TODO(@selawik) Add error state
