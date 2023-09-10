@@ -47,45 +47,47 @@ class MapPageBody extends StatelessWidget {
             bottom: MediaQuery.paddingOf(context).bottom + 16,
             child: Column(
               children: [
-                CupertinoButton(
-                  padding: EdgeInsets.zero,
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColors.white,
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.white,
+                  ),
+                  child: CupertinoButton(
+                    padding: EdgeInsets.zero,
+                    onPressed: () => mapBloc.add(
+                      const MapEvent.showMyLocation(),
                     ),
                     child: const Icon(
                       Icons.location_on,
                     ),
                   ),
-                  onPressed: () {},
                 ),
                 const SizedBox(height: 8),
-                CupertinoButton(
-                  padding: EdgeInsets.zero,
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColors.white,
-                    ),
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.white,
+                  ),
+                  child: CupertinoButton(
+                    padding: EdgeInsets.zero,
+                    onPressed: () => mapBloc.add(const MapEvent.zoomOut()),
                     child: const Icon(Icons.remove),
                   ),
-                  onPressed: () => mapBloc.add(const MapEvent.zoomOut()),
                 ),
                 const SizedBox(height: 8),
-                CupertinoButton(
-                  padding: EdgeInsets.zero,
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColors.white,
-                    ),
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  decoration: const BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.white,
+                  ),
+                  child: CupertinoButton(
+                    padding: EdgeInsets.zero,
+                    onPressed: () => mapBloc.add(const MapEvent.zoomIn()),
                     child: const Icon(Icons.add),
                   ),
-                  onPressed: () => mapBloc.add(const MapEvent.zoomIn()),
                 )
               ],
             ),

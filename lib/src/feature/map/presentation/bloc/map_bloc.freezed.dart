@@ -21,6 +21,7 @@ mixin _$MapEvent {
     required TResult Function(YandexMapController? controller) started,
     required TResult Function() zoomIn,
     required TResult Function() zoomOut,
+    required TResult Function() showMyLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -28,6 +29,7 @@ mixin _$MapEvent {
     TResult? Function(YandexMapController? controller)? started,
     TResult? Function()? zoomIn,
     TResult? Function()? zoomOut,
+    TResult? Function()? showMyLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -35,6 +37,7 @@ mixin _$MapEvent {
     TResult Function(YandexMapController? controller)? started,
     TResult Function()? zoomIn,
     TResult Function()? zoomOut,
+    TResult Function()? showMyLocation,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$MapEvent {
     required TResult Function(_Started value) started,
     required TResult Function(_ZoomIn value) zoomIn,
     required TResult Function(_ZoomOut value) zoomOut,
+    required TResult Function(_ShowMyLocation value) showMyLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$MapEvent {
     TResult? Function(_Started value)? started,
     TResult? Function(_ZoomIn value)? zoomIn,
     TResult? Function(_ZoomOut value)? zoomOut,
+    TResult? Function(_ShowMyLocation value)? showMyLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$MapEvent {
     TResult Function(_Started value)? started,
     TResult Function(_ZoomIn value)? zoomIn,
     TResult Function(_ZoomOut value)? zoomOut,
+    TResult Function(_ShowMyLocation value)? showMyLocation,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -146,6 +152,7 @@ class _$_Started implements _Started {
     required TResult Function(YandexMapController? controller) started,
     required TResult Function() zoomIn,
     required TResult Function() zoomOut,
+    required TResult Function() showMyLocation,
   }) {
     return started(controller);
   }
@@ -156,6 +163,7 @@ class _$_Started implements _Started {
     TResult? Function(YandexMapController? controller)? started,
     TResult? Function()? zoomIn,
     TResult? Function()? zoomOut,
+    TResult? Function()? showMyLocation,
   }) {
     return started?.call(controller);
   }
@@ -166,6 +174,7 @@ class _$_Started implements _Started {
     TResult Function(YandexMapController? controller)? started,
     TResult Function()? zoomIn,
     TResult Function()? zoomOut,
+    TResult Function()? showMyLocation,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -180,6 +189,7 @@ class _$_Started implements _Started {
     required TResult Function(_Started value) started,
     required TResult Function(_ZoomIn value) zoomIn,
     required TResult Function(_ZoomOut value) zoomOut,
+    required TResult Function(_ShowMyLocation value) showMyLocation,
   }) {
     return started(this);
   }
@@ -190,6 +200,7 @@ class _$_Started implements _Started {
     TResult? Function(_Started value)? started,
     TResult? Function(_ZoomIn value)? zoomIn,
     TResult? Function(_ZoomOut value)? zoomOut,
+    TResult? Function(_ShowMyLocation value)? showMyLocation,
   }) {
     return started?.call(this);
   }
@@ -200,6 +211,7 @@ class _$_Started implements _Started {
     TResult Function(_Started value)? started,
     TResult Function(_ZoomIn value)? zoomIn,
     TResult Function(_ZoomOut value)? zoomOut,
+    TResult Function(_ShowMyLocation value)? showMyLocation,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -257,6 +269,7 @@ class _$_ZoomIn implements _ZoomIn {
     required TResult Function(YandexMapController? controller) started,
     required TResult Function() zoomIn,
     required TResult Function() zoomOut,
+    required TResult Function() showMyLocation,
   }) {
     return zoomIn();
   }
@@ -267,6 +280,7 @@ class _$_ZoomIn implements _ZoomIn {
     TResult? Function(YandexMapController? controller)? started,
     TResult? Function()? zoomIn,
     TResult? Function()? zoomOut,
+    TResult? Function()? showMyLocation,
   }) {
     return zoomIn?.call();
   }
@@ -277,6 +291,7 @@ class _$_ZoomIn implements _ZoomIn {
     TResult Function(YandexMapController? controller)? started,
     TResult Function()? zoomIn,
     TResult Function()? zoomOut,
+    TResult Function()? showMyLocation,
     required TResult orElse(),
   }) {
     if (zoomIn != null) {
@@ -291,6 +306,7 @@ class _$_ZoomIn implements _ZoomIn {
     required TResult Function(_Started value) started,
     required TResult Function(_ZoomIn value) zoomIn,
     required TResult Function(_ZoomOut value) zoomOut,
+    required TResult Function(_ShowMyLocation value) showMyLocation,
   }) {
     return zoomIn(this);
   }
@@ -301,6 +317,7 @@ class _$_ZoomIn implements _ZoomIn {
     TResult? Function(_Started value)? started,
     TResult? Function(_ZoomIn value)? zoomIn,
     TResult? Function(_ZoomOut value)? zoomOut,
+    TResult? Function(_ShowMyLocation value)? showMyLocation,
   }) {
     return zoomIn?.call(this);
   }
@@ -311,6 +328,7 @@ class _$_ZoomIn implements _ZoomIn {
     TResult Function(_Started value)? started,
     TResult Function(_ZoomIn value)? zoomIn,
     TResult Function(_ZoomOut value)? zoomOut,
+    TResult Function(_ShowMyLocation value)? showMyLocation,
     required TResult orElse(),
   }) {
     if (zoomIn != null) {
@@ -364,6 +382,7 @@ class _$_ZoomOut implements _ZoomOut {
     required TResult Function(YandexMapController? controller) started,
     required TResult Function() zoomIn,
     required TResult Function() zoomOut,
+    required TResult Function() showMyLocation,
   }) {
     return zoomOut();
   }
@@ -374,6 +393,7 @@ class _$_ZoomOut implements _ZoomOut {
     TResult? Function(YandexMapController? controller)? started,
     TResult? Function()? zoomIn,
     TResult? Function()? zoomOut,
+    TResult? Function()? showMyLocation,
   }) {
     return zoomOut?.call();
   }
@@ -384,6 +404,7 @@ class _$_ZoomOut implements _ZoomOut {
     TResult Function(YandexMapController? controller)? started,
     TResult Function()? zoomIn,
     TResult Function()? zoomOut,
+    TResult Function()? showMyLocation,
     required TResult orElse(),
   }) {
     if (zoomOut != null) {
@@ -398,6 +419,7 @@ class _$_ZoomOut implements _ZoomOut {
     required TResult Function(_Started value) started,
     required TResult Function(_ZoomIn value) zoomIn,
     required TResult Function(_ZoomOut value) zoomOut,
+    required TResult Function(_ShowMyLocation value) showMyLocation,
   }) {
     return zoomOut(this);
   }
@@ -408,6 +430,7 @@ class _$_ZoomOut implements _ZoomOut {
     TResult? Function(_Started value)? started,
     TResult? Function(_ZoomIn value)? zoomIn,
     TResult? Function(_ZoomOut value)? zoomOut,
+    TResult? Function(_ShowMyLocation value)? showMyLocation,
   }) {
     return zoomOut?.call(this);
   }
@@ -418,6 +441,7 @@ class _$_ZoomOut implements _ZoomOut {
     TResult Function(_Started value)? started,
     TResult Function(_ZoomIn value)? zoomIn,
     TResult Function(_ZoomOut value)? zoomOut,
+    TResult Function(_ShowMyLocation value)? showMyLocation,
     required TResult orElse(),
   }) {
     if (zoomOut != null) {
@@ -429,6 +453,120 @@ class _$_ZoomOut implements _ZoomOut {
 
 abstract class _ZoomOut implements MapEvent {
   const factory _ZoomOut() = _$_ZoomOut;
+}
+
+/// @nodoc
+abstract class _$$_ShowMyLocationCopyWith<$Res> {
+  factory _$$_ShowMyLocationCopyWith(
+          _$_ShowMyLocation value, $Res Function(_$_ShowMyLocation) then) =
+      __$$_ShowMyLocationCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ShowMyLocationCopyWithImpl<$Res>
+    extends _$MapEventCopyWithImpl<$Res, _$_ShowMyLocation>
+    implements _$$_ShowMyLocationCopyWith<$Res> {
+  __$$_ShowMyLocationCopyWithImpl(
+      _$_ShowMyLocation _value, $Res Function(_$_ShowMyLocation) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_ShowMyLocation implements _ShowMyLocation {
+  const _$_ShowMyLocation();
+
+  @override
+  String toString() {
+    return 'MapEvent.showMyLocation()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_ShowMyLocation);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(YandexMapController? controller) started,
+    required TResult Function() zoomIn,
+    required TResult Function() zoomOut,
+    required TResult Function() showMyLocation,
+  }) {
+    return showMyLocation();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(YandexMapController? controller)? started,
+    TResult? Function()? zoomIn,
+    TResult? Function()? zoomOut,
+    TResult? Function()? showMyLocation,
+  }) {
+    return showMyLocation?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(YandexMapController? controller)? started,
+    TResult Function()? zoomIn,
+    TResult Function()? zoomOut,
+    TResult Function()? showMyLocation,
+    required TResult orElse(),
+  }) {
+    if (showMyLocation != null) {
+      return showMyLocation();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_ZoomIn value) zoomIn,
+    required TResult Function(_ZoomOut value) zoomOut,
+    required TResult Function(_ShowMyLocation value) showMyLocation,
+  }) {
+    return showMyLocation(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_ZoomIn value)? zoomIn,
+    TResult? Function(_ZoomOut value)? zoomOut,
+    TResult? Function(_ShowMyLocation value)? showMyLocation,
+  }) {
+    return showMyLocation?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_ZoomIn value)? zoomIn,
+    TResult Function(_ZoomOut value)? zoomOut,
+    TResult Function(_ShowMyLocation value)? showMyLocation,
+    required TResult orElse(),
+  }) {
+    if (showMyLocation != null) {
+      return showMyLocation(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ShowMyLocation implements MapEvent {
+  const factory _ShowMyLocation() = _$_ShowMyLocation;
 }
 
 /// @nodoc

@@ -7,4 +7,5 @@ class MapEvent with _$MapEvent {
   }) = _Started;
   const factory MapEvent.zoomIn() = _ZoomIn;
   const factory MapEvent.zoomOut() = _ZoomOut;
+  const factory MapEvent.showMyLocation() = _ShowMyLocation;
 }

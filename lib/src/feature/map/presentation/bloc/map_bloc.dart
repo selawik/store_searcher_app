@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:yandex_map_test/src/feature/map/domain/exceptions/map_exceptions.dart';
 import 'package:yandex_map_test/src/feature/map/domain/repository/map_repository.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
@@ -17,6 +20,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     on<_ZoomIn>(_onZoomIn);
     on<_ZoomOut>(_onZoomOut);
     on<_Started>(_onStarted);
+    on<_ShowMyLocation>(_onShowMyLocation);
   }
 
   void _onStarted(_Started event, Emitter emit) {
@@ -50,6 +54,41 @@ class MapBloc extends Bloc<MapEvent, MapState> {
           duration: 0.5,
         ),
       );
+    }
+  }
+
+  Future<void> _onShowMyLocation(_ShowMyLocation event, Emitter emit) async {
+    final currentState = state;
+    if (currentState is! _Initialized) {
+      return;
+    }
+
+    try {
+      final myLocation = await _repository.getCurrentLocation();
+
+      final point = Point(
+        longitude: myLocation.longitude,
+        latitude: myLocation.latitude,
+      );
+
+      final oldCameraPosition =
+          await currentState.controller.getCameraPosition();
+
+      currentState.controller.moveCamera(
+        CameraUpdate.newCameraPosition(
+          CameraPosition(
+            target: point,
+            zoom: oldCameraPosition.zoom > 15 ? oldCameraPosition.zoom : 15,
+          ),
+        ),
+        animation: const MapAnimation(duration: 0.5),
+      );
+    } on LocationServiceIsDisabled catch (e, stack) {
+      log(e.toString(), stackTrace: stack);
+    } on NoLocationPermission catch (e, stack) {
+      log(e.toString(), stackTrace: stack);
+    } catch (e, stack) {
+      log(e.toString(), stackTrace: stack);
     }
   }
 }

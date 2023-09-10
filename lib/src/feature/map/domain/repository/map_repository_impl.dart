@@ -10,8 +10,7 @@ final class MapRepositoryImpl implements MapRepository {
   }) : _locationDataProvider = dataProvider;
 
   @override
-  Future<MapLocation> getCurrentLocation() {
-    // TODO: implement getCurrentLocation
-    throw UnimplementedError();
+  Future<MapLocation> getCurrentLocation() async {
+    return await _locationDataProvider.getCurrentLocation();
   }
 }
