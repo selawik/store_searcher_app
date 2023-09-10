@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:yandex_map_test/src/common/constant/assets_catalog.dart';
 import 'package:yandex_map_test/src/feature/map/domain/exceptions/map_exceptions.dart';
 import 'package:yandex_map_test/src/feature/map/domain/repository/map_repository.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
@@ -26,6 +27,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
   void _onStarted(_Started event, Emitter emit) {
     if (event.controller != null) {
       emit(MapState.initialized(controller: event.controller!));
+      add(const MapEvent.showMyLocation());
     } else {
       emit(const MapState.error());
     }
@@ -66,6 +68,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     try {
       final myLocation = await _repository.getCurrentLocation();
 
+      //TODO(@selawik) Add mapper
       final point = Point(
         longitude: myLocation.longitude,
         latitude: myLocation.latitude,
@@ -83,11 +86,43 @@ class MapBloc extends Bloc<MapEvent, MapState> {
         ),
         animation: const MapAnimation(duration: 0.5),
       );
+
+      final mapObject = PlacemarkMapObject(
+        mapId: MapObjectId('userLocation'),
+        point: point,
+        opacity: 1,
+        icon: PlacemarkIcon.single(
+          PlacemarkIconStyle(
+            image: BitmapDescriptor.fromAssetImage(
+              AssetsCatalog.icUserLocation,
+            ),
+          ),
+        ),
+      );
+
+      final existingObjectId = currentState.mapObjects.indexWhere(
+        (element) => element.mapId.value == 'userLocation',
+      );
+
+      var newMapObjects = <MapObject>[];
+
+      if (existingObjectId != -1) {
+        newMapObjects = List<MapObject>.from(currentState.mapObjects);
+
+        newMapObjects[existingObjectId] = mapObject;
+      } else {
+        newMapObjects.add(mapObject);
+      }
+
+      emit(currentState.copyWith(mapObjects: newMapObjects));
     } on LocationServiceIsDisabled catch (e, stack) {
+      //TODO(@selawik) Add error state
       log(e.toString(), stackTrace: stack);
     } on NoLocationPermission catch (e, stack) {
+      //TODO(@selawik) Add error state
       log(e.toString(), stackTrace: stack);
     } catch (e, stack) {
+      //TODO(@selawik) Add error state
       log(e.toString(), stackTrace: stack);
     }
   }

@@ -17,6 +17,7 @@ class MapPageBody extends StatelessWidget {
         children: [
           Positioned.fill(
             child: YandexMap(
+              mapObjects: state.mapObjects,
               onMapCreated: (controller) {
                 mapBloc.add(MapEvent.started(controller: controller));
               },

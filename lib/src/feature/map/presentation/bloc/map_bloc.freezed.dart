@@ -575,21 +575,27 @@ mixin _$MapState {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(YandexMapController controller) initialized,
+    required TResult Function(
+            YandexMapController controller, List<MapObject> mapObjects)
+        initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(YandexMapController controller)? initialized,
+    TResult? Function(
+            YandexMapController controller, List<MapObject> mapObjects)?
+        initialized,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(YandexMapController controller)? initialized,
+    TResult Function(
+            YandexMapController controller, List<MapObject> mapObjects)?
+        initialized,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -651,8 +657,8 @@ class __$$_LoadingCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Loading implements _Loading {
-  const _$_Loading();
+class _$_Loading extends _Loading {
+  const _$_Loading() : super._();
 
   @override
   String toString() {
@@ -673,7 +679,9 @@ class _$_Loading implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(YandexMapController controller) initialized,
+    required TResult Function(
+            YandexMapController controller, List<MapObject> mapObjects)
+        initialized,
   }) {
     return loading();
   }
@@ -683,7 +691,9 @@ class _$_Loading implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(YandexMapController controller)? initialized,
+    TResult? Function(
+            YandexMapController controller, List<MapObject> mapObjects)?
+        initialized,
   }) {
     return loading?.call();
   }
@@ -693,7 +703,9 @@ class _$_Loading implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(YandexMapController controller)? initialized,
+    TResult Function(
+            YandexMapController controller, List<MapObject> mapObjects)?
+        initialized,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -737,8 +749,9 @@ class _$_Loading implements _Loading {
   }
 }
 
-abstract class _Loading implements MapState {
+abstract class _Loading extends MapState {
   const factory _Loading() = _$_Loading;
+  const _Loading._() : super._();
 }
 
 /// @nodoc
@@ -757,8 +770,8 @@ class __$$_ErrorCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Error implements _Error {
-  const _$_Error();
+class _$_Error extends _Error {
+  const _$_Error() : super._();
 
   @override
   String toString() {
@@ -779,7 +792,9 @@ class _$_Error implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(YandexMapController controller) initialized,
+    required TResult Function(
+            YandexMapController controller, List<MapObject> mapObjects)
+        initialized,
   }) {
     return error();
   }
@@ -789,7 +804,9 @@ class _$_Error implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(YandexMapController controller)? initialized,
+    TResult? Function(
+            YandexMapController controller, List<MapObject> mapObjects)?
+        initialized,
   }) {
     return error?.call();
   }
@@ -799,7 +816,9 @@ class _$_Error implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(YandexMapController controller)? initialized,
+    TResult Function(
+            YandexMapController controller, List<MapObject> mapObjects)?
+        initialized,
     required TResult orElse(),
   }) {
     if (error != null) {
@@ -843,8 +862,9 @@ class _$_Error implements _Error {
   }
 }
 
-abstract class _Error implements MapState {
+abstract class _Error extends MapState {
   const factory _Error() = _$_Error;
+  const _Error._() : super._();
 }
 
 /// @nodoc
@@ -853,7 +873,7 @@ abstract class _$$_InitializedCopyWith<$Res> {
           _$_Initialized value, $Res Function(_$_Initialized) then) =
       __$$_InitializedCopyWithImpl<$Res>;
   @useResult
-  $Res call({YandexMapController controller});
+  $Res call({YandexMapController controller, List<MapObject> mapObjects});
 }
 
 /// @nodoc
@@ -868,27 +888,44 @@ class __$$_InitializedCopyWithImpl<$Res>
   @override
   $Res call({
     Object? controller = null,
+    Object? mapObjects = null,
   }) {
     return _then(_$_Initialized(
       controller: null == controller
           ? _value.controller
           : controller // ignore: cast_nullable_to_non_nullable
               as YandexMapController,
+      mapObjects: null == mapObjects
+          ? _value._mapObjects
+          : mapObjects // ignore: cast_nullable_to_non_nullable
+              as List<MapObject>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_Initialized implements _Initialized {
-  const _$_Initialized({required this.controller});
+class _$_Initialized extends _Initialized {
+  const _$_Initialized(
+      {required this.controller,
+      final List<MapObject> mapObjects = const <MapObject>[]})
+      : _mapObjects = mapObjects,
+        super._();
 
   @override
   final YandexMapController controller;
+  final List<MapObject> _mapObjects;
+  @override
+  @JsonKey()
+  List<MapObject> get mapObjects {
+    if (_mapObjects is EqualUnmodifiableListView) return _mapObjects;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_mapObjects);
+  }
 
   @override
   String toString() {
-    return 'MapState.initialized(controller: $controller)';
+    return 'MapState.initialized(controller: $controller, mapObjects: $mapObjects)';
   }
 
   @override
@@ -897,11 +934,14 @@ class _$_Initialized implements _Initialized {
         (other.runtimeType == runtimeType &&
             other is _$_Initialized &&
             (identical(other.controller, controller) ||
-                other.controller == controller));
+                other.controller == controller) &&
+            const DeepCollectionEquality()
+                .equals(other._mapObjects, _mapObjects));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, controller);
+  int get hashCode => Object.hash(runtimeType, controller,
+      const DeepCollectionEquality().hash(_mapObjects));
 
   @JsonKey(ignore: true)
   @override
@@ -914,9 +954,11 @@ class _$_Initialized implements _Initialized {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(YandexMapController controller) initialized,
+    required TResult Function(
+            YandexMapController controller, List<MapObject> mapObjects)
+        initialized,
   }) {
-    return initialized(controller);
+    return initialized(controller, mapObjects);
   }
 
   @override
@@ -924,9 +966,11 @@ class _$_Initialized implements _Initialized {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(YandexMapController controller)? initialized,
+    TResult? Function(
+            YandexMapController controller, List<MapObject> mapObjects)?
+        initialized,
   }) {
-    return initialized?.call(controller);
+    return initialized?.call(controller, mapObjects);
   }
 
   @override
@@ -934,11 +978,13 @@ class _$_Initialized implements _Initialized {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(YandexMapController controller)? initialized,
+    TResult Function(
+            YandexMapController controller, List<MapObject> mapObjects)?
+        initialized,
     required TResult orElse(),
   }) {
     if (initialized != null) {
-      return initialized(controller);
+      return initialized(controller, mapObjects);
     }
     return orElse();
   }
@@ -978,11 +1024,14 @@ class _$_Initialized implements _Initialized {
   }
 }
 
-abstract class _Initialized implements MapState {
-  const factory _Initialized({required final YandexMapController controller}) =
-      _$_Initialized;
+abstract class _Initialized extends MapState {
+  const factory _Initialized(
+      {required final YandexMapController controller,
+      final List<MapObject> mapObjects}) = _$_Initialized;
+  const _Initialized._() : super._();
 
   YandexMapController get controller;
+  List<MapObject> get mapObjects;
   @JsonKey(ignore: true)
   _$$_InitializedCopyWith<_$_Initialized> get copyWith =>
       throw _privateConstructorUsedError;
