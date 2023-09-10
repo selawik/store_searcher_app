@@ -26,7 +26,7 @@ class MapPageBody extends StatelessWidget {
           state.maybeMap(
             orElse: () => Container(),
             loading: (state) => const Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator.adaptive(),
             ),
           ),
           Positioned(
@@ -39,7 +39,35 @@ class MapPageBody extends StatelessWidget {
               ),
               child: CupertinoButton(
                 child: const Icon(Icons.menu),
-                onPressed: () {},
+                onPressed: () => Scaffold.of(context).openDrawer(),
+              ),
+            ),
+          ),
+          Positioned(
+            right: 16,
+            top: MediaQuery.paddingOf(context).top + 8,
+            child: Container(
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: AppColors.white,
+              ),
+              child: CupertinoButton(
+                child: const Icon(Icons.search_outlined),
+                onPressed: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (context) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Container(
+                            child: Text('123123'),
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
               ),
             ),
           ),

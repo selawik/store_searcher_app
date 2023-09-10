@@ -12,6 +12,7 @@ class MapPage extends StatelessWidget {
     final repository = context.read<MapRepository>();
 
     return Scaffold(
+      drawer: const Drawer(),
       body: BlocProvider(
         create: (context) => MapBloc(repository: repository),
         child: const MapPageBody(),
