@@ -1,5 +1,6 @@
 import 'package:yandex_map_test/src/feature/map/data/data_provider/location_data_provider/location_data_provider.dart';
 import 'package:yandex_map_test/src/feature/map/data/data_provider/shop_data_provider/shop_data_provider.dart';
+import 'package:yandex_map_test/src/feature/map/domain/entity/enum/shop_type.dart';
 import 'package:yandex_map_test/src/feature/map/domain/entity/map_location.dart';
 import 'package:yandex_map_test/src/feature/map/domain/entity/shop_entity.dart';
 import 'package:yandex_map_test/src/feature/map/domain/repository/map_repository.dart';
@@ -20,7 +21,7 @@ final class MapRepositoryImpl implements MapRepository {
   }
 
   @override
-  Future<List<ShopEntity>> getShopList() async {
+  Future<List<ShopEntity>> getShopList({ShopType? type}) async {
     return await _shopDataProvider.getShopList();
   }
 }

@@ -24,10 +24,10 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     on<_ShowMyLocation>(_onShowMyLocation);
   }
 
-  void _onStarted(_Started event, Emitter emit) {
+  void _onStarted(_Started event, Emitter emit) async {
     if (event.controller != null) {
       emit(MapState.initialized(controller: event.controller!));
-      _loadShops();
+      await _loadShops(emit);
       add(const MapEvent.showMyLocation());
     } else {
       emit(const MapState.error());
@@ -105,33 +105,13 @@ class MapBloc extends Bloc<MapEvent, MapState> {
         (element) => element.mapId.value == 'userLocation',
       );
 
-      var newMapObjects = <MapObject>[];
+      var newMapObjects = List<MapObject>.from(currentState.mapObjects);
 
       if (existingObjectId != -1) {
-        newMapObjects = List<MapObject>.from(currentState.mapObjects);
-
         newMapObjects[existingObjectId] = mapObject;
       } else {
         newMapObjects.add(mapObject);
       }
-
-      newMapObjects.add(
-        PlacemarkMapObject(
-          mapId: MapObjectId('pyaterochka'),
-          point: Point(
-            latitude: 56.634532,
-            longitude: 47.9248314,
-          ),
-          opacity: 1,
-          icon: PlacemarkIcon.single(
-            PlacemarkIconStyle(
-              image: BitmapDescriptor.fromAssetImage(
-                AssetsCatalog.icPyaterochka,
-              ),
-            ),
-          ),
-        ),
-      );
 
       emit(currentState.copyWith(mapObjects: newMapObjects));
     } on LocationServiceIsDisabled catch (e, stack) {
@@ -146,8 +126,39 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     }
   }
 
-  Future<void> _loadShops() async {
-    try {} catch (e, stack) {
+  Future<void> _loadShops(Emitter emit) async {
+    final currentState = state as _Initialized;
+
+    try {
+      final shopList = await _repository.getShopList();
+
+      final mapObjects = currentState.mapObjects.where(
+        (element) => element.mapId == const MapObjectId('userLocation'),
+      );
+
+      final newMapObjects = mapObjects.toList() +
+          shopList
+              .map(
+                (e) => PlacemarkMapObject(
+                  mapId: MapObjectId(e.id.toString()),
+                  point: Point(
+                    latitude: e.location.latitude,
+                    longitude: e.location.longitude,
+                  ),
+                  opacity: 1,
+                  icon: PlacemarkIcon.single(
+                    PlacemarkIconStyle(
+                      image: BitmapDescriptor.fromAssetImage(
+                        AssetsCatalog.icPyaterochka,
+                      ),
+                    ),
+                  ),
+                ),
+              )
+              .toList();
+
+      emit(currentState.copyWith(mapObjects: newMapObjects));
+    } catch (e, stack) {
       log(e.toString(), stackTrace: stack);
     }
   }
