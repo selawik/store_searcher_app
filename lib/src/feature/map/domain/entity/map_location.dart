@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'location.freezed.dart';
+part 'map_location.freezed.dart';
 
 @freezed
 class MapLocation with _$MapLocation {

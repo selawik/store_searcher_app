@@ -27,6 +27,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
   void _onStarted(_Started event, Emitter emit) {
     if (event.controller != null) {
       emit(MapState.initialized(controller: event.controller!));
+      _loadShops();
       add(const MapEvent.showMyLocation());
     } else {
       emit(const MapState.error());
@@ -141,6 +142,12 @@ class MapBloc extends Bloc<MapEvent, MapState> {
       log(e.toString(), stackTrace: stack);
     } catch (e, stack) {
       //TODO(@selawik) Add error state
+      log(e.toString(), stackTrace: stack);
+    }
+  }
+
+  Future<void> _loadShops() async {
+    try {} catch (e, stack) {
       log(e.toString(), stackTrace: stack);
     }
   }
