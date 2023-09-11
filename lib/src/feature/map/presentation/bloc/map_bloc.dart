@@ -2,16 +2,16 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:yandex_map_test/src/common/constant/assets_catalog.dart';
 import 'package:yandex_map_test/src/feature/map/domain/exceptions/map_exceptions.dart';
 import 'package:yandex_map_test/src/feature/map/domain/repository/map_repository.dart';
+import 'package:yandex_map_test/src/feature/map/presentation/bloc/mixin/map_mixin.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 part 'map_bloc.freezed.dart';
 part 'map_event.dart';
 part 'map_state.dart';
 
-class MapBloc extends Bloc<MapEvent, MapState> {
+class MapBloc extends Bloc<MapEvent, MapState> with MapMixin {
   final MapRepository _repository;
 
   MapBloc({
@@ -88,21 +88,10 @@ class MapBloc extends Bloc<MapEvent, MapState> {
         animation: const MapAnimation(duration: 0.5),
       );
 
-      final mapObject = PlacemarkMapObject(
-        mapId: MapObjectId('userLocation'),
-        point: point,
-        opacity: 1,
-        icon: PlacemarkIcon.single(
-          PlacemarkIconStyle(
-            image: BitmapDescriptor.fromAssetImage(
-              AssetsCatalog.icUserLocation,
-            ),
-          ),
-        ),
-      );
+      final mapObject = createUserPlaceMarkObject(point);
 
       final existingObjectId = currentState.mapObjects.indexWhere(
-        (element) => element.mapId.value == 'userLocation',
+        (element) => element.mapId.value == MapMixin.userMapKeyString,
       );
 
       var newMapObjects = List<MapObject>.from(currentState.mapObjects);
@@ -132,32 +121,19 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     try {
       final shopList = await _repository.getShopList();
 
-      final mapObjects = currentState.mapObjects.where(
-        (element) => element.mapId == const MapObjectId('userLocation'),
-      );
+      final mapObjects = currentState.mapObjects
+          .where(
+            (element) => element.mapId.value == MapMixin.userMapKeyString,
+          )
+          .toList();
 
-      final newMapObjects = mapObjects.toList() +
-          shopList
-              .map(
-                (e) => PlacemarkMapObject(
-                  mapId: MapObjectId(e.id.toString()),
-                  point: Point(
-                    latitude: e.location.latitude,
-                    longitude: e.location.longitude,
-                  ),
-                  opacity: 1,
-                  icon: PlacemarkIcon.single(
-                    PlacemarkIconStyle(
-                      image: BitmapDescriptor.fromAssetImage(
-                        AssetsCatalog.icPyaterochka,
-                      ),
-                    ),
-                  ),
-                ),
-              )
-              .toList();
+      final shopObjects = shopList
+          .map(
+            (e) => createShopPlaceMarkObject(e),
+          )
+          .toList();
 
-      emit(currentState.copyWith(mapObjects: newMapObjects));
+      emit(currentState.copyWith(mapObjects: shopObjects + mapObjects));
     } catch (e, stack) {
       log(e.toString(), stackTrace: stack);
     }
