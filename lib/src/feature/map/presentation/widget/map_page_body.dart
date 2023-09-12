@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yandex_map_test/src/common/constant/app_colors.dart';
 import 'package:yandex_map_test/src/feature/map/presentation/bloc/map_bloc.dart';
+import 'package:yandex_map_test/src/feature/map/presentation/model/map_marker.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 class MapPageBody extends StatelessWidget {
@@ -17,7 +18,13 @@ class MapPageBody extends StatelessWidget {
         children: [
           Positioned.fill(
             child: YandexMap(
-              mapObjects: state.mapObjects,
+              mapObjects: state.markers
+                  .map(
+                    (e) => e.createPlaceMarkObject(
+                      (p0, p1) => _onMarkerPressed(e),
+                    ),
+                  )
+                  .toList(),
               onMapCreated: (controller) {
                 mapBloc.add(MapEvent.started(controller: controller));
               },
@@ -126,4 +133,17 @@ class MapPageBody extends StatelessWidget {
       listener: (context, state) {},
     );
   }
+
+  void _onMarkerPressed(MapMarker mapMarker) {
+    switch (mapMarker) {
+      case ShopMarker marker:
+        _onShopMarkerPressed(marker);
+      case UserMarker marker:
+        _onUserMarkerPressed(marker);
+    }
+  }
+
+  void _onShopMarkerPressed(ShopMarker marker) {}
+
+  void _onUserMarkerPressed(UserMarker marker) {}
 }

@@ -4,13 +4,15 @@ part of 'map_bloc.dart';
 class MapState with _$MapState {
   const MapState._();
 
-  List<MapObject> get mapObjects =>
-      mapOrNull(initialized: (state) => state.mapObjects) ?? [];
+  List<MapMarker> get markers =>
+      mapOrNull(initialized: (state) => state.markers) ?? [];
 
   const factory MapState.loading() = _Loading;
+
   const factory MapState.error() = _Error;
+
   const factory MapState.initialized({
     required YandexMapController controller,
-    @Default(<MapObject>[]) List<MapObject> mapObjects,
+    @Default(<MapMarker>[]) List<MapMarker> markers,
   }) = _Initialized;
 }

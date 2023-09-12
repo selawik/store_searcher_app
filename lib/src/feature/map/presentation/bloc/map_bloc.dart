@@ -4,14 +4,14 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:yandex_map_test/src/feature/map/domain/exceptions/map_exceptions.dart';
 import 'package:yandex_map_test/src/feature/map/domain/repository/map_repository.dart';
-import 'package:yandex_map_test/src/feature/map/presentation/bloc/mixin/map_mixin.dart';
+import 'package:yandex_map_test/src/feature/map/presentation/model/map_marker.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 part 'map_bloc.freezed.dart';
 part 'map_event.dart';
 part 'map_state.dart';
 
-class MapBloc extends Bloc<MapEvent, MapState> with MapMixin {
+class MapBloc extends Bloc<MapEvent, MapState> {
   final MapRepository _repository;
 
   MapBloc({
@@ -88,21 +88,24 @@ class MapBloc extends Bloc<MapEvent, MapState> with MapMixin {
         animation: const MapAnimation(duration: 0.5),
       );
 
-      final mapObject = createUserPlaceMarkObject(point);
-
-      final existingObjectId = currentState.mapObjects.indexWhere(
-        (element) => element.mapId.value == MapMixin.userMapKeyString,
+      final userMarker = UserMarker(
+        latitude: point.latitude,
+        longitude: point.longitude,
       );
 
-      var newMapObjects = List<MapObject>.from(currentState.mapObjects);
+      final existingObjectIndex = currentState.markers.indexWhere(
+        (element) => element is UserMarker,
+      );
 
-      if (existingObjectId != -1) {
-        newMapObjects[existingObjectId] = mapObject;
+      var newMarkers = List<MapMarker>.from(currentState.markers);
+
+      if (existingObjectIndex != -1) {
+        newMarkers[existingObjectIndex] = userMarker;
       } else {
-        newMapObjects.add(mapObject);
+        newMarkers.add(userMarker);
       }
 
-      emit(currentState.copyWith(mapObjects: newMapObjects));
+      emit(currentState.copyWith(markers: newMarkers));
     } on LocationServiceIsDisabled catch (e, stack) {
       //TODO(@selawik) Add error state
       log(e.toString(), stackTrace: stack);
@@ -121,19 +124,19 @@ class MapBloc extends Bloc<MapEvent, MapState> with MapMixin {
     try {
       final shopList = await _repository.getShopList();
 
-      final mapObjects = currentState.mapObjects
-          .where(
-            (element) => element.mapId.value == MapMixin.userMapKeyString,
+      final List<MapMarker> mapObjects =
+          currentState.markers.whereType<UserMarker>().toList();
+
+      final List<MapMarker> shopObjects = shopList
+          .map<MapMarker>(
+            (e) => ShopMarker(
+              latitude: e.location.latitude,
+              longitude: e.location.longitude,
+            ),
           )
           .toList();
 
-      final shopObjects = shopList
-          .map(
-            (e) => createShopPlaceMarkObject(e),
-          )
-          .toList();
-
-      emit(currentState.copyWith(mapObjects: shopObjects + mapObjects));
+      emit(currentState.copyWith(markers: shopObjects + mapObjects));
     } catch (e, stack) {
       log(e.toString(), stackTrace: stack);
     }

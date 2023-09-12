@@ -23,7 +23,7 @@ mixin _$ShopDTO {
   int get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   LocationDTO get location =>
-      throw _privateConstructorUsedError; //TODO maybe create only dto enum
+      throw _privateConstructorUsedError; //TODO (selawik) maybe create only dto enum
   ShopType get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -155,7 +155,7 @@ class _$_ShopDTO implements _ShopDTO {
   final String name;
   @override
   final LocationDTO location;
-//TODO maybe create only dto enum
+//TODO (selawik) maybe create only dto enum
   @override
   final ShopType type;
 
@@ -209,7 +209,7 @@ abstract class _ShopDTO implements ShopDTO {
   String get name;
   @override
   LocationDTO get location;
-  @override //TODO maybe create only dto enum
+  @override //TODO (selawik) maybe create only dto enum
   ShopType get type;
   @override
   @JsonKey(ignore: true)
