@@ -108,6 +108,12 @@ class ThemeBuilder {
     );
   }
 
+  static ButtonStyle get circleElevatedButtonStyle => const ButtonStyle(
+        shape: MaterialStatePropertyAll(CircleBorder()),
+        fixedSize: MaterialStatePropertyAll(Size(48, 48)),
+        padding: MaterialStatePropertyAll(EdgeInsets.zero),
+      );
+
   static BorderRadius get defaultBorderRadius => BorderRadius.circular(16);
 
   static List<BoxShadow> get defaultShadow => [
@@ -141,5 +147,19 @@ class ThemeBuilder {
         borderRadius: defaultBorderRadius,
         color: AppColors.white,
         boxShadow: ThemeBuilder.defaultShadow,
+      );
+}
+
+extension ButtonColorExtension on ButtonStyle {
+  ButtonStyle get white => copyWith(
+        overlayColor: const MaterialStatePropertyAll(AppColors.white),
+        foregroundColor: const MaterialStatePropertyAll(AppColors.black),
+        backgroundColor: const MaterialStatePropertyAll(AppColors.white),
+      );
+
+  ButtonStyle get peach => copyWith(
+        overlayColor: const MaterialStatePropertyAll(AppColors.peach),
+        foregroundColor: const MaterialStatePropertyAll(AppColors.white),
+        backgroundColor: const MaterialStatePropertyAll(AppColors.peach),
       );
 }
