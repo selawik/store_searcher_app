@@ -35,10 +35,13 @@ final class ShopMarker extends MapMarker {
   ShopMarker({
     required double latitude,
     required double longitude,
+    required this.shopId,
   }) : super(
           latitude: latitude,
           longitude: longitude,
         );
+
+  final int shopId;
 
   @override
   String markerAsset = AssetsCatalog.icPyaterochka;

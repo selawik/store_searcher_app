@@ -22,6 +22,8 @@ mixin _$MapEvent {
     required TResult Function() zoomIn,
     required TResult Function() zoomOut,
     required TResult Function() showMyLocation,
+    required TResult Function() loadShops,
+    required TResult Function(ShopMarker shopMarker) buildRoute,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +32,8 @@ mixin _$MapEvent {
     TResult? Function()? zoomIn,
     TResult? Function()? zoomOut,
     TResult? Function()? showMyLocation,
+    TResult? Function()? loadShops,
+    TResult? Function(ShopMarker shopMarker)? buildRoute,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +42,8 @@ mixin _$MapEvent {
     TResult Function()? zoomIn,
     TResult Function()? zoomOut,
     TResult Function()? showMyLocation,
+    TResult Function()? loadShops,
+    TResult Function(ShopMarker shopMarker)? buildRoute,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +53,8 @@ mixin _$MapEvent {
     required TResult Function(_ZoomIn value) zoomIn,
     required TResult Function(_ZoomOut value) zoomOut,
     required TResult Function(_ShowMyLocation value) showMyLocation,
+    required TResult Function(_LoadShops value) loadShops,
+    required TResult Function(_BuildRoute value) buildRoute,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +63,8 @@ mixin _$MapEvent {
     TResult? Function(_ZoomIn value)? zoomIn,
     TResult? Function(_ZoomOut value)? zoomOut,
     TResult? Function(_ShowMyLocation value)? showMyLocation,
+    TResult? Function(_LoadShops value)? loadShops,
+    TResult? Function(_BuildRoute value)? buildRoute,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +73,8 @@ mixin _$MapEvent {
     TResult Function(_ZoomIn value)? zoomIn,
     TResult Function(_ZoomOut value)? zoomOut,
     TResult Function(_ShowMyLocation value)? showMyLocation,
+    TResult Function(_LoadShops value)? loadShops,
+    TResult Function(_BuildRoute value)? buildRoute,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -153,6 +165,8 @@ class _$_Started implements _Started {
     required TResult Function() zoomIn,
     required TResult Function() zoomOut,
     required TResult Function() showMyLocation,
+    required TResult Function() loadShops,
+    required TResult Function(ShopMarker shopMarker) buildRoute,
   }) {
     return started(controller);
   }
@@ -164,6 +178,8 @@ class _$_Started implements _Started {
     TResult? Function()? zoomIn,
     TResult? Function()? zoomOut,
     TResult? Function()? showMyLocation,
+    TResult? Function()? loadShops,
+    TResult? Function(ShopMarker shopMarker)? buildRoute,
   }) {
     return started?.call(controller);
   }
@@ -175,6 +191,8 @@ class _$_Started implements _Started {
     TResult Function()? zoomIn,
     TResult Function()? zoomOut,
     TResult Function()? showMyLocation,
+    TResult Function()? loadShops,
+    TResult Function(ShopMarker shopMarker)? buildRoute,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -190,6 +208,8 @@ class _$_Started implements _Started {
     required TResult Function(_ZoomIn value) zoomIn,
     required TResult Function(_ZoomOut value) zoomOut,
     required TResult Function(_ShowMyLocation value) showMyLocation,
+    required TResult Function(_LoadShops value) loadShops,
+    required TResult Function(_BuildRoute value) buildRoute,
   }) {
     return started(this);
   }
@@ -201,6 +221,8 @@ class _$_Started implements _Started {
     TResult? Function(_ZoomIn value)? zoomIn,
     TResult? Function(_ZoomOut value)? zoomOut,
     TResult? Function(_ShowMyLocation value)? showMyLocation,
+    TResult? Function(_LoadShops value)? loadShops,
+    TResult? Function(_BuildRoute value)? buildRoute,
   }) {
     return started?.call(this);
   }
@@ -212,6 +234,8 @@ class _$_Started implements _Started {
     TResult Function(_ZoomIn value)? zoomIn,
     TResult Function(_ZoomOut value)? zoomOut,
     TResult Function(_ShowMyLocation value)? showMyLocation,
+    TResult Function(_LoadShops value)? loadShops,
+    TResult Function(_BuildRoute value)? buildRoute,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -270,6 +294,8 @@ class _$_ZoomIn implements _ZoomIn {
     required TResult Function() zoomIn,
     required TResult Function() zoomOut,
     required TResult Function() showMyLocation,
+    required TResult Function() loadShops,
+    required TResult Function(ShopMarker shopMarker) buildRoute,
   }) {
     return zoomIn();
   }
@@ -281,6 +307,8 @@ class _$_ZoomIn implements _ZoomIn {
     TResult? Function()? zoomIn,
     TResult? Function()? zoomOut,
     TResult? Function()? showMyLocation,
+    TResult? Function()? loadShops,
+    TResult? Function(ShopMarker shopMarker)? buildRoute,
   }) {
     return zoomIn?.call();
   }
@@ -292,6 +320,8 @@ class _$_ZoomIn implements _ZoomIn {
     TResult Function()? zoomIn,
     TResult Function()? zoomOut,
     TResult Function()? showMyLocation,
+    TResult Function()? loadShops,
+    TResult Function(ShopMarker shopMarker)? buildRoute,
     required TResult orElse(),
   }) {
     if (zoomIn != null) {
@@ -307,6 +337,8 @@ class _$_ZoomIn implements _ZoomIn {
     required TResult Function(_ZoomIn value) zoomIn,
     required TResult Function(_ZoomOut value) zoomOut,
     required TResult Function(_ShowMyLocation value) showMyLocation,
+    required TResult Function(_LoadShops value) loadShops,
+    required TResult Function(_BuildRoute value) buildRoute,
   }) {
     return zoomIn(this);
   }
@@ -318,6 +350,8 @@ class _$_ZoomIn implements _ZoomIn {
     TResult? Function(_ZoomIn value)? zoomIn,
     TResult? Function(_ZoomOut value)? zoomOut,
     TResult? Function(_ShowMyLocation value)? showMyLocation,
+    TResult? Function(_LoadShops value)? loadShops,
+    TResult? Function(_BuildRoute value)? buildRoute,
   }) {
     return zoomIn?.call(this);
   }
@@ -329,6 +363,8 @@ class _$_ZoomIn implements _ZoomIn {
     TResult Function(_ZoomIn value)? zoomIn,
     TResult Function(_ZoomOut value)? zoomOut,
     TResult Function(_ShowMyLocation value)? showMyLocation,
+    TResult Function(_LoadShops value)? loadShops,
+    TResult Function(_BuildRoute value)? buildRoute,
     required TResult orElse(),
   }) {
     if (zoomIn != null) {
@@ -383,6 +419,8 @@ class _$_ZoomOut implements _ZoomOut {
     required TResult Function() zoomIn,
     required TResult Function() zoomOut,
     required TResult Function() showMyLocation,
+    required TResult Function() loadShops,
+    required TResult Function(ShopMarker shopMarker) buildRoute,
   }) {
     return zoomOut();
   }
@@ -394,6 +432,8 @@ class _$_ZoomOut implements _ZoomOut {
     TResult? Function()? zoomIn,
     TResult? Function()? zoomOut,
     TResult? Function()? showMyLocation,
+    TResult? Function()? loadShops,
+    TResult? Function(ShopMarker shopMarker)? buildRoute,
   }) {
     return zoomOut?.call();
   }
@@ -405,6 +445,8 @@ class _$_ZoomOut implements _ZoomOut {
     TResult Function()? zoomIn,
     TResult Function()? zoomOut,
     TResult Function()? showMyLocation,
+    TResult Function()? loadShops,
+    TResult Function(ShopMarker shopMarker)? buildRoute,
     required TResult orElse(),
   }) {
     if (zoomOut != null) {
@@ -420,6 +462,8 @@ class _$_ZoomOut implements _ZoomOut {
     required TResult Function(_ZoomIn value) zoomIn,
     required TResult Function(_ZoomOut value) zoomOut,
     required TResult Function(_ShowMyLocation value) showMyLocation,
+    required TResult Function(_LoadShops value) loadShops,
+    required TResult Function(_BuildRoute value) buildRoute,
   }) {
     return zoomOut(this);
   }
@@ -431,6 +475,8 @@ class _$_ZoomOut implements _ZoomOut {
     TResult? Function(_ZoomIn value)? zoomIn,
     TResult? Function(_ZoomOut value)? zoomOut,
     TResult? Function(_ShowMyLocation value)? showMyLocation,
+    TResult? Function(_LoadShops value)? loadShops,
+    TResult? Function(_BuildRoute value)? buildRoute,
   }) {
     return zoomOut?.call(this);
   }
@@ -442,6 +488,8 @@ class _$_ZoomOut implements _ZoomOut {
     TResult Function(_ZoomIn value)? zoomIn,
     TResult Function(_ZoomOut value)? zoomOut,
     TResult Function(_ShowMyLocation value)? showMyLocation,
+    TResult Function(_LoadShops value)? loadShops,
+    TResult Function(_BuildRoute value)? buildRoute,
     required TResult orElse(),
   }) {
     if (zoomOut != null) {
@@ -497,6 +545,8 @@ class _$_ShowMyLocation implements _ShowMyLocation {
     required TResult Function() zoomIn,
     required TResult Function() zoomOut,
     required TResult Function() showMyLocation,
+    required TResult Function() loadShops,
+    required TResult Function(ShopMarker shopMarker) buildRoute,
   }) {
     return showMyLocation();
   }
@@ -508,6 +558,8 @@ class _$_ShowMyLocation implements _ShowMyLocation {
     TResult? Function()? zoomIn,
     TResult? Function()? zoomOut,
     TResult? Function()? showMyLocation,
+    TResult? Function()? loadShops,
+    TResult? Function(ShopMarker shopMarker)? buildRoute,
   }) {
     return showMyLocation?.call();
   }
@@ -519,6 +571,8 @@ class _$_ShowMyLocation implements _ShowMyLocation {
     TResult Function()? zoomIn,
     TResult Function()? zoomOut,
     TResult Function()? showMyLocation,
+    TResult Function()? loadShops,
+    TResult Function(ShopMarker shopMarker)? buildRoute,
     required TResult orElse(),
   }) {
     if (showMyLocation != null) {
@@ -534,6 +588,8 @@ class _$_ShowMyLocation implements _ShowMyLocation {
     required TResult Function(_ZoomIn value) zoomIn,
     required TResult Function(_ZoomOut value) zoomOut,
     required TResult Function(_ShowMyLocation value) showMyLocation,
+    required TResult Function(_LoadShops value) loadShops,
+    required TResult Function(_BuildRoute value) buildRoute,
   }) {
     return showMyLocation(this);
   }
@@ -545,6 +601,8 @@ class _$_ShowMyLocation implements _ShowMyLocation {
     TResult? Function(_ZoomIn value)? zoomIn,
     TResult? Function(_ZoomOut value)? zoomOut,
     TResult? Function(_ShowMyLocation value)? showMyLocation,
+    TResult? Function(_LoadShops value)? loadShops,
+    TResult? Function(_BuildRoute value)? buildRoute,
   }) {
     return showMyLocation?.call(this);
   }
@@ -556,6 +614,8 @@ class _$_ShowMyLocation implements _ShowMyLocation {
     TResult Function(_ZoomIn value)? zoomIn,
     TResult Function(_ZoomOut value)? zoomOut,
     TResult Function(_ShowMyLocation value)? showMyLocation,
+    TResult Function(_LoadShops value)? loadShops,
+    TResult Function(_BuildRoute value)? buildRoute,
     required TResult orElse(),
   }) {
     if (showMyLocation != null) {
@@ -570,13 +630,298 @@ abstract class _ShowMyLocation implements MapEvent {
 }
 
 /// @nodoc
+abstract class _$$_LoadShopsCopyWith<$Res> {
+  factory _$$_LoadShopsCopyWith(
+          _$_LoadShops value, $Res Function(_$_LoadShops) then) =
+      __$$_LoadShopsCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_LoadShopsCopyWithImpl<$Res>
+    extends _$MapEventCopyWithImpl<$Res, _$_LoadShops>
+    implements _$$_LoadShopsCopyWith<$Res> {
+  __$$_LoadShopsCopyWithImpl(
+      _$_LoadShops _value, $Res Function(_$_LoadShops) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_LoadShops implements _LoadShops {
+  const _$_LoadShops();
+
+  @override
+  String toString() {
+    return 'MapEvent.loadShops()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_LoadShops);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(YandexMapController? controller) started,
+    required TResult Function() zoomIn,
+    required TResult Function() zoomOut,
+    required TResult Function() showMyLocation,
+    required TResult Function() loadShops,
+    required TResult Function(ShopMarker shopMarker) buildRoute,
+  }) {
+    return loadShops();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(YandexMapController? controller)? started,
+    TResult? Function()? zoomIn,
+    TResult? Function()? zoomOut,
+    TResult? Function()? showMyLocation,
+    TResult? Function()? loadShops,
+    TResult? Function(ShopMarker shopMarker)? buildRoute,
+  }) {
+    return loadShops?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(YandexMapController? controller)? started,
+    TResult Function()? zoomIn,
+    TResult Function()? zoomOut,
+    TResult Function()? showMyLocation,
+    TResult Function()? loadShops,
+    TResult Function(ShopMarker shopMarker)? buildRoute,
+    required TResult orElse(),
+  }) {
+    if (loadShops != null) {
+      return loadShops();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_ZoomIn value) zoomIn,
+    required TResult Function(_ZoomOut value) zoomOut,
+    required TResult Function(_ShowMyLocation value) showMyLocation,
+    required TResult Function(_LoadShops value) loadShops,
+    required TResult Function(_BuildRoute value) buildRoute,
+  }) {
+    return loadShops(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_ZoomIn value)? zoomIn,
+    TResult? Function(_ZoomOut value)? zoomOut,
+    TResult? Function(_ShowMyLocation value)? showMyLocation,
+    TResult? Function(_LoadShops value)? loadShops,
+    TResult? Function(_BuildRoute value)? buildRoute,
+  }) {
+    return loadShops?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_ZoomIn value)? zoomIn,
+    TResult Function(_ZoomOut value)? zoomOut,
+    TResult Function(_ShowMyLocation value)? showMyLocation,
+    TResult Function(_LoadShops value)? loadShops,
+    TResult Function(_BuildRoute value)? buildRoute,
+    required TResult orElse(),
+  }) {
+    if (loadShops != null) {
+      return loadShops(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadShops implements MapEvent {
+  const factory _LoadShops() = _$_LoadShops;
+}
+
+/// @nodoc
+abstract class _$$_BuildRouteCopyWith<$Res> {
+  factory _$$_BuildRouteCopyWith(
+          _$_BuildRoute value, $Res Function(_$_BuildRoute) then) =
+      __$$_BuildRouteCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ShopMarker shopMarker});
+}
+
+/// @nodoc
+class __$$_BuildRouteCopyWithImpl<$Res>
+    extends _$MapEventCopyWithImpl<$Res, _$_BuildRoute>
+    implements _$$_BuildRouteCopyWith<$Res> {
+  __$$_BuildRouteCopyWithImpl(
+      _$_BuildRoute _value, $Res Function(_$_BuildRoute) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? shopMarker = null,
+  }) {
+    return _then(_$_BuildRoute(
+      shopMarker: null == shopMarker
+          ? _value.shopMarker
+          : shopMarker // ignore: cast_nullable_to_non_nullable
+              as ShopMarker,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_BuildRoute implements _BuildRoute {
+  const _$_BuildRoute({required this.shopMarker});
+
+  @override
+  final ShopMarker shopMarker;
+
+  @override
+  String toString() {
+    return 'MapEvent.buildRoute(shopMarker: $shopMarker)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_BuildRoute &&
+            (identical(other.shopMarker, shopMarker) ||
+                other.shopMarker == shopMarker));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, shopMarker);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_BuildRouteCopyWith<_$_BuildRoute> get copyWith =>
+      __$$_BuildRouteCopyWithImpl<_$_BuildRoute>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(YandexMapController? controller) started,
+    required TResult Function() zoomIn,
+    required TResult Function() zoomOut,
+    required TResult Function() showMyLocation,
+    required TResult Function() loadShops,
+    required TResult Function(ShopMarker shopMarker) buildRoute,
+  }) {
+    return buildRoute(shopMarker);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(YandexMapController? controller)? started,
+    TResult? Function()? zoomIn,
+    TResult? Function()? zoomOut,
+    TResult? Function()? showMyLocation,
+    TResult? Function()? loadShops,
+    TResult? Function(ShopMarker shopMarker)? buildRoute,
+  }) {
+    return buildRoute?.call(shopMarker);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(YandexMapController? controller)? started,
+    TResult Function()? zoomIn,
+    TResult Function()? zoomOut,
+    TResult Function()? showMyLocation,
+    TResult Function()? loadShops,
+    TResult Function(ShopMarker shopMarker)? buildRoute,
+    required TResult orElse(),
+  }) {
+    if (buildRoute != null) {
+      return buildRoute(shopMarker);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_ZoomIn value) zoomIn,
+    required TResult Function(_ZoomOut value) zoomOut,
+    required TResult Function(_ShowMyLocation value) showMyLocation,
+    required TResult Function(_LoadShops value) loadShops,
+    required TResult Function(_BuildRoute value) buildRoute,
+  }) {
+    return buildRoute(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_ZoomIn value)? zoomIn,
+    TResult? Function(_ZoomOut value)? zoomOut,
+    TResult? Function(_ShowMyLocation value)? showMyLocation,
+    TResult? Function(_LoadShops value)? loadShops,
+    TResult? Function(_BuildRoute value)? buildRoute,
+  }) {
+    return buildRoute?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_ZoomIn value)? zoomIn,
+    TResult Function(_ZoomOut value)? zoomOut,
+    TResult Function(_ShowMyLocation value)? showMyLocation,
+    TResult Function(_LoadShops value)? loadShops,
+    TResult Function(_BuildRoute value)? buildRoute,
+    required TResult orElse(),
+  }) {
+    if (buildRoute != null) {
+      return buildRoute(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _BuildRoute implements MapEvent {
+  const factory _BuildRoute({required final ShopMarker shopMarker}) =
+      _$_BuildRoute;
+
+  ShopMarker get shopMarker;
+  @JsonKey(ignore: true)
+  _$$_BuildRouteCopyWith<_$_BuildRoute> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$MapState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(
-            YandexMapController controller, List<MapMarker> markers)
+    required TResult Function(YandexMapController controller,
+            MapMarker? userMarker, List<MapMarker> shopMarkers)
         initialized,
   }) =>
       throw _privateConstructorUsedError;
@@ -584,7 +929,8 @@ mixin _$MapState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(YandexMapController controller, List<MapMarker> markers)?
+    TResult? Function(YandexMapController controller, MapMarker? userMarker,
+            List<MapMarker> shopMarkers)?
         initialized,
   }) =>
       throw _privateConstructorUsedError;
@@ -592,7 +938,8 @@ mixin _$MapState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(YandexMapController controller, List<MapMarker> markers)?
+    TResult Function(YandexMapController controller, MapMarker? userMarker,
+            List<MapMarker> shopMarkers)?
         initialized,
     required TResult orElse(),
   }) =>
@@ -677,8 +1024,8 @@ class _$_Loading extends _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(
-            YandexMapController controller, List<MapMarker> markers)
+    required TResult Function(YandexMapController controller,
+            MapMarker? userMarker, List<MapMarker> shopMarkers)
         initialized,
   }) {
     return loading();
@@ -689,7 +1036,8 @@ class _$_Loading extends _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(YandexMapController controller, List<MapMarker> markers)?
+    TResult? Function(YandexMapController controller, MapMarker? userMarker,
+            List<MapMarker> shopMarkers)?
         initialized,
   }) {
     return loading?.call();
@@ -700,7 +1048,8 @@ class _$_Loading extends _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(YandexMapController controller, List<MapMarker> markers)?
+    TResult Function(YandexMapController controller, MapMarker? userMarker,
+            List<MapMarker> shopMarkers)?
         initialized,
     required TResult orElse(),
   }) {
@@ -788,8 +1137,8 @@ class _$_Error extends _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(
-            YandexMapController controller, List<MapMarker> markers)
+    required TResult Function(YandexMapController controller,
+            MapMarker? userMarker, List<MapMarker> shopMarkers)
         initialized,
   }) {
     return error();
@@ -800,7 +1149,8 @@ class _$_Error extends _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(YandexMapController controller, List<MapMarker> markers)?
+    TResult? Function(YandexMapController controller, MapMarker? userMarker,
+            List<MapMarker> shopMarkers)?
         initialized,
   }) {
     return error?.call();
@@ -811,7 +1161,8 @@ class _$_Error extends _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(YandexMapController controller, List<MapMarker> markers)?
+    TResult Function(YandexMapController controller, MapMarker? userMarker,
+            List<MapMarker> shopMarkers)?
         initialized,
     required TResult orElse(),
   }) {
@@ -867,7 +1218,10 @@ abstract class _$$_InitializedCopyWith<$Res> {
           _$_Initialized value, $Res Function(_$_Initialized) then) =
       __$$_InitializedCopyWithImpl<$Res>;
   @useResult
-  $Res call({YandexMapController controller, List<MapMarker> markers});
+  $Res call(
+      {YandexMapController controller,
+      MapMarker? userMarker,
+      List<MapMarker> shopMarkers});
 }
 
 /// @nodoc
@@ -882,16 +1236,21 @@ class __$$_InitializedCopyWithImpl<$Res>
   @override
   $Res call({
     Object? controller = null,
-    Object? markers = null,
+    Object? userMarker = freezed,
+    Object? shopMarkers = null,
   }) {
     return _then(_$_Initialized(
       controller: null == controller
           ? _value.controller
           : controller // ignore: cast_nullable_to_non_nullable
               as YandexMapController,
-      markers: null == markers
-          ? _value._markers
-          : markers // ignore: cast_nullable_to_non_nullable
+      userMarker: freezed == userMarker
+          ? _value.userMarker
+          : userMarker // ignore: cast_nullable_to_non_nullable
+              as MapMarker?,
+      shopMarkers: null == shopMarkers
+          ? _value._shopMarkers
+          : shopMarkers // ignore: cast_nullable_to_non_nullable
               as List<MapMarker>,
     ));
   }
@@ -902,24 +1261,27 @@ class __$$_InitializedCopyWithImpl<$Res>
 class _$_Initialized extends _Initialized {
   const _$_Initialized(
       {required this.controller,
-      final List<MapMarker> markers = const <MapMarker>[]})
-      : _markers = markers,
+      this.userMarker,
+      final List<MapMarker> shopMarkers = const <MapMarker>[]})
+      : _shopMarkers = shopMarkers,
         super._();
 
   @override
   final YandexMapController controller;
-  final List<MapMarker> _markers;
+  @override
+  final MapMarker? userMarker;
+  final List<MapMarker> _shopMarkers;
   @override
   @JsonKey()
-  List<MapMarker> get markers {
-    if (_markers is EqualUnmodifiableListView) return _markers;
+  List<MapMarker> get shopMarkers {
+    if (_shopMarkers is EqualUnmodifiableListView) return _shopMarkers;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_markers);
+    return EqualUnmodifiableListView(_shopMarkers);
   }
 
   @override
   String toString() {
-    return 'MapState.initialized(controller: $controller, markers: $markers)';
+    return 'MapState.initialized(controller: $controller, userMarker: $userMarker, shopMarkers: $shopMarkers)';
   }
 
   @override
@@ -929,12 +1291,15 @@ class _$_Initialized extends _Initialized {
             other is _$_Initialized &&
             (identical(other.controller, controller) ||
                 other.controller == controller) &&
-            const DeepCollectionEquality().equals(other._markers, _markers));
+            (identical(other.userMarker, userMarker) ||
+                other.userMarker == userMarker) &&
+            const DeepCollectionEquality()
+                .equals(other._shopMarkers, _shopMarkers));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, controller, const DeepCollectionEquality().hash(_markers));
+  int get hashCode => Object.hash(runtimeType, controller, userMarker,
+      const DeepCollectionEquality().hash(_shopMarkers));
 
   @JsonKey(ignore: true)
   @override
@@ -947,11 +1312,11 @@ class _$_Initialized extends _Initialized {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(
-            YandexMapController controller, List<MapMarker> markers)
+    required TResult Function(YandexMapController controller,
+            MapMarker? userMarker, List<MapMarker> shopMarkers)
         initialized,
   }) {
-    return initialized(controller, markers);
+    return initialized(controller, userMarker, shopMarkers);
   }
 
   @override
@@ -959,10 +1324,11 @@ class _$_Initialized extends _Initialized {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loading,
     TResult? Function()? error,
-    TResult? Function(YandexMapController controller, List<MapMarker> markers)?
+    TResult? Function(YandexMapController controller, MapMarker? userMarker,
+            List<MapMarker> shopMarkers)?
         initialized,
   }) {
-    return initialized?.call(controller, markers);
+    return initialized?.call(controller, userMarker, shopMarkers);
   }
 
   @override
@@ -970,12 +1336,13 @@ class _$_Initialized extends _Initialized {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loading,
     TResult Function()? error,
-    TResult Function(YandexMapController controller, List<MapMarker> markers)?
+    TResult Function(YandexMapController controller, MapMarker? userMarker,
+            List<MapMarker> shopMarkers)?
         initialized,
     required TResult orElse(),
   }) {
     if (initialized != null) {
-      return initialized(controller, markers);
+      return initialized(controller, userMarker, shopMarkers);
     }
     return orElse();
   }
@@ -1018,11 +1385,13 @@ class _$_Initialized extends _Initialized {
 abstract class _Initialized extends MapState {
   const factory _Initialized(
       {required final YandexMapController controller,
-      final List<MapMarker> markers}) = _$_Initialized;
+      final MapMarker? userMarker,
+      final List<MapMarker> shopMarkers}) = _$_Initialized;
   const _Initialized._() : super._();
 
   YandexMapController get controller;
-  List<MapMarker> get markers;
+  MapMarker? get userMarker;
+  List<MapMarker> get shopMarkers;
   @JsonKey(ignore: true)
   _$$_InitializedCopyWith<_$_Initialized> get copyWith =>
       throw _privateConstructorUsedError;

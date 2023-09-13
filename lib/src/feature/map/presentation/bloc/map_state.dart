@@ -5,7 +5,12 @@ class MapState with _$MapState {
   const MapState._();
 
   List<MapMarker> get markers =>
-      mapOrNull(initialized: (state) => state.markers) ?? [];
+      mapOrNull(
+        initialized: (state) => state.userMarker == null
+            ? state.shopMarkers
+            : [...state.shopMarkers, state.userMarker!],
+      ) ??
+      [];
 
   const factory MapState.loading() = _Loading;
 
@@ -13,6 +18,7 @@ class MapState with _$MapState {
 
   const factory MapState.initialized({
     required YandexMapController controller,
-    @Default(<MapMarker>[]) List<MapMarker> markers,
+    MapMarker? userMarker,
+    @Default(<MapMarker>[]) List<MapMarker> shopMarkers,
   }) = _Initialized;
 }

@@ -8,4 +8,8 @@ class MapEvent with _$MapEvent {
   const factory MapEvent.zoomIn() = _ZoomIn;
   const factory MapEvent.zoomOut() = _ZoomOut;
   const factory MapEvent.showMyLocation() = _ShowMyLocation;
+  const factory MapEvent.loadShops() = _LoadShops;
+  const factory MapEvent.buildRoute({
+    required ShopMarker shopMarker,
+  }) = _BuildRoute;
 }
