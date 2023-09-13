@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yandex_map_test/src/common/theme/theme_builder.dart';
 import 'package:yandex_map_test/src/feature/map/presentation/bloc/map_bloc.dart';
+import 'package:yandex_map_test/src/feature/map/presentation/extensions/driving_route_extension.dart';
 import 'package:yandex_map_test/src/feature/map/presentation/model/map_marker.dart';
-import 'package:yandex_map_test/src/feature/map/presentation/widget/shop_modal.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 class MapPageBody extends StatelessWidget {
@@ -13,18 +13,33 @@ class MapPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final mapBloc = context.read<MapBloc>();
 
+    List<MapObject> getLitst(MapState state) {
+      final a1 = state.markers
+          .map<MapObject>(
+            (e) => e.createPlaceMarkObject(
+              (_, __) => _onMarkerPressed(context, e),
+            ),
+          )
+          .toList();
+
+      final a2 = state.routes
+          .map<MapObject>(
+            (e) => e.createPolylineMapObject(),
+          )
+          .toList();
+
+      final a = a1 + a2;
+
+      return a;
+    }
+
     return BlocConsumer<MapBloc, MapState>(
       builder: (context, state) => Stack(
         children: [
           Positioned.fill(
             child: YandexMap(
-              mapObjects: state.markers
-                  .map(
-                    (e) => e.createPlaceMarkObject(
-                      (p0, p1) => _onMarkerPressed(context, e),
-                    ),
-                  )
-                  .toList(),
+              nightModeEnabled: true,
+              mapObjects: getLitst(state),
               onMapCreated: (controller) {
                 mapBloc.add(MapEvent.started(controller: controller));
               },
@@ -95,7 +110,8 @@ class MapPageBody extends StatelessWidget {
   }
 
   void _onShopMarkerPressed(BuildContext context, ShopMarker marker) {
-    ShopModal.show(context);
+    context.read<MapBloc>().add(MapEvent.buildRoute(shopMarker: marker));
+    // ShopModal.show(context);
   }
 
   void _onUserMarkerPressed(BuildContext context, UserMarker marker) {}

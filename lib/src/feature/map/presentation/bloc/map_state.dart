@@ -12,6 +12,12 @@ class MapState with _$MapState {
       ) ??
       [];
 
+  List<DrivingRoute> get routes =>
+      mapOrNull(
+        initialized: (state) => state.routes,
+      ) ??
+      [];
+
   const factory MapState.loading() = _Loading;
 
   const factory MapState.error() = _Error;
@@ -20,5 +26,6 @@ class MapState with _$MapState {
     required YandexMapController controller,
     MapMarker? userMarker,
     @Default(<MapMarker>[]) List<MapMarker> shopMarkers,
+    @Default(<DrivingRoute>[]) List<DrivingRoute> routes,
   }) = _Initialized;
 }

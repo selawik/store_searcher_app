@@ -920,8 +920,11 @@ mixin _$MapState {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(YandexMapController controller,
-            MapMarker? userMarker, List<MapMarker> shopMarkers)
+    required TResult Function(
+            YandexMapController controller,
+            MapMarker? userMarker,
+            List<MapMarker> shopMarkers,
+            List<DrivingRoute> routes)
         initialized,
   }) =>
       throw _privateConstructorUsedError;
@@ -930,7 +933,7 @@ mixin _$MapState {
     TResult? Function()? loading,
     TResult? Function()? error,
     TResult? Function(YandexMapController controller, MapMarker? userMarker,
-            List<MapMarker> shopMarkers)?
+            List<MapMarker> shopMarkers, List<DrivingRoute> routes)?
         initialized,
   }) =>
       throw _privateConstructorUsedError;
@@ -939,7 +942,7 @@ mixin _$MapState {
     TResult Function()? loading,
     TResult Function()? error,
     TResult Function(YandexMapController controller, MapMarker? userMarker,
-            List<MapMarker> shopMarkers)?
+            List<MapMarker> shopMarkers, List<DrivingRoute> routes)?
         initialized,
     required TResult orElse(),
   }) =>
@@ -1024,8 +1027,11 @@ class _$_Loading extends _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(YandexMapController controller,
-            MapMarker? userMarker, List<MapMarker> shopMarkers)
+    required TResult Function(
+            YandexMapController controller,
+            MapMarker? userMarker,
+            List<MapMarker> shopMarkers,
+            List<DrivingRoute> routes)
         initialized,
   }) {
     return loading();
@@ -1037,7 +1043,7 @@ class _$_Loading extends _Loading {
     TResult? Function()? loading,
     TResult? Function()? error,
     TResult? Function(YandexMapController controller, MapMarker? userMarker,
-            List<MapMarker> shopMarkers)?
+            List<MapMarker> shopMarkers, List<DrivingRoute> routes)?
         initialized,
   }) {
     return loading?.call();
@@ -1049,7 +1055,7 @@ class _$_Loading extends _Loading {
     TResult Function()? loading,
     TResult Function()? error,
     TResult Function(YandexMapController controller, MapMarker? userMarker,
-            List<MapMarker> shopMarkers)?
+            List<MapMarker> shopMarkers, List<DrivingRoute> routes)?
         initialized,
     required TResult orElse(),
   }) {
@@ -1137,8 +1143,11 @@ class _$_Error extends _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(YandexMapController controller,
-            MapMarker? userMarker, List<MapMarker> shopMarkers)
+    required TResult Function(
+            YandexMapController controller,
+            MapMarker? userMarker,
+            List<MapMarker> shopMarkers,
+            List<DrivingRoute> routes)
         initialized,
   }) {
     return error();
@@ -1150,7 +1159,7 @@ class _$_Error extends _Error {
     TResult? Function()? loading,
     TResult? Function()? error,
     TResult? Function(YandexMapController controller, MapMarker? userMarker,
-            List<MapMarker> shopMarkers)?
+            List<MapMarker> shopMarkers, List<DrivingRoute> routes)?
         initialized,
   }) {
     return error?.call();
@@ -1162,7 +1171,7 @@ class _$_Error extends _Error {
     TResult Function()? loading,
     TResult Function()? error,
     TResult Function(YandexMapController controller, MapMarker? userMarker,
-            List<MapMarker> shopMarkers)?
+            List<MapMarker> shopMarkers, List<DrivingRoute> routes)?
         initialized,
     required TResult orElse(),
   }) {
@@ -1221,7 +1230,8 @@ abstract class _$$_InitializedCopyWith<$Res> {
   $Res call(
       {YandexMapController controller,
       MapMarker? userMarker,
-      List<MapMarker> shopMarkers});
+      List<MapMarker> shopMarkers,
+      List<DrivingRoute> routes});
 }
 
 /// @nodoc
@@ -1238,6 +1248,7 @@ class __$$_InitializedCopyWithImpl<$Res>
     Object? controller = null,
     Object? userMarker = freezed,
     Object? shopMarkers = null,
+    Object? routes = null,
   }) {
     return _then(_$_Initialized(
       controller: null == controller
@@ -1252,6 +1263,10 @@ class __$$_InitializedCopyWithImpl<$Res>
           ? _value._shopMarkers
           : shopMarkers // ignore: cast_nullable_to_non_nullable
               as List<MapMarker>,
+      routes: null == routes
+          ? _value._routes
+          : routes // ignore: cast_nullable_to_non_nullable
+              as List<DrivingRoute>,
     ));
   }
 }
@@ -1262,8 +1277,10 @@ class _$_Initialized extends _Initialized {
   const _$_Initialized(
       {required this.controller,
       this.userMarker,
-      final List<MapMarker> shopMarkers = const <MapMarker>[]})
+      final List<MapMarker> shopMarkers = const <MapMarker>[],
+      final List<DrivingRoute> routes = const <DrivingRoute>[]})
       : _shopMarkers = shopMarkers,
+        _routes = routes,
         super._();
 
   @override
@@ -1279,9 +1296,18 @@ class _$_Initialized extends _Initialized {
     return EqualUnmodifiableListView(_shopMarkers);
   }
 
+  final List<DrivingRoute> _routes;
+  @override
+  @JsonKey()
+  List<DrivingRoute> get routes {
+    if (_routes is EqualUnmodifiableListView) return _routes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_routes);
+  }
+
   @override
   String toString() {
-    return 'MapState.initialized(controller: $controller, userMarker: $userMarker, shopMarkers: $shopMarkers)';
+    return 'MapState.initialized(controller: $controller, userMarker: $userMarker, shopMarkers: $shopMarkers, routes: $routes)';
   }
 
   @override
@@ -1294,12 +1320,17 @@ class _$_Initialized extends _Initialized {
             (identical(other.userMarker, userMarker) ||
                 other.userMarker == userMarker) &&
             const DeepCollectionEquality()
-                .equals(other._shopMarkers, _shopMarkers));
+                .equals(other._shopMarkers, _shopMarkers) &&
+            const DeepCollectionEquality().equals(other._routes, _routes));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, controller, userMarker,
-      const DeepCollectionEquality().hash(_shopMarkers));
+  int get hashCode => Object.hash(
+      runtimeType,
+      controller,
+      userMarker,
+      const DeepCollectionEquality().hash(_shopMarkers),
+      const DeepCollectionEquality().hash(_routes));
 
   @JsonKey(ignore: true)
   @override
@@ -1312,11 +1343,14 @@ class _$_Initialized extends _Initialized {
   TResult when<TResult extends Object?>({
     required TResult Function() loading,
     required TResult Function() error,
-    required TResult Function(YandexMapController controller,
-            MapMarker? userMarker, List<MapMarker> shopMarkers)
+    required TResult Function(
+            YandexMapController controller,
+            MapMarker? userMarker,
+            List<MapMarker> shopMarkers,
+            List<DrivingRoute> routes)
         initialized,
   }) {
-    return initialized(controller, userMarker, shopMarkers);
+    return initialized(controller, userMarker, shopMarkers, routes);
   }
 
   @override
@@ -1325,10 +1359,10 @@ class _$_Initialized extends _Initialized {
     TResult? Function()? loading,
     TResult? Function()? error,
     TResult? Function(YandexMapController controller, MapMarker? userMarker,
-            List<MapMarker> shopMarkers)?
+            List<MapMarker> shopMarkers, List<DrivingRoute> routes)?
         initialized,
   }) {
-    return initialized?.call(controller, userMarker, shopMarkers);
+    return initialized?.call(controller, userMarker, shopMarkers, routes);
   }
 
   @override
@@ -1337,12 +1371,12 @@ class _$_Initialized extends _Initialized {
     TResult Function()? loading,
     TResult Function()? error,
     TResult Function(YandexMapController controller, MapMarker? userMarker,
-            List<MapMarker> shopMarkers)?
+            List<MapMarker> shopMarkers, List<DrivingRoute> routes)?
         initialized,
     required TResult orElse(),
   }) {
     if (initialized != null) {
-      return initialized(controller, userMarker, shopMarkers);
+      return initialized(controller, userMarker, shopMarkers, routes);
     }
     return orElse();
   }
@@ -1386,12 +1420,14 @@ abstract class _Initialized extends MapState {
   const factory _Initialized(
       {required final YandexMapController controller,
       final MapMarker? userMarker,
-      final List<MapMarker> shopMarkers}) = _$_Initialized;
+      final List<MapMarker> shopMarkers,
+      final List<DrivingRoute> routes}) = _$_Initialized;
   const _Initialized._() : super._();
 
   YandexMapController get controller;
   MapMarker? get userMarker;
   List<MapMarker> get shopMarkers;
+  List<DrivingRoute> get routes;
   @JsonKey(ignore: true)
   _$$_InitializedCopyWith<_$_Initialized> get copyWith =>
       throw _privateConstructorUsedError;

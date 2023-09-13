@@ -139,5 +139,40 @@ class MapBloc extends Bloc<MapEvent, MapState> {
 
   Future<void> _onBuildRoute(_BuildRoute event, Emitter<MapState> emit) async {
     final currentState = state as _Initialized;
+
+    if (currentState.userMarker == null) {
+      ///emit error
+    }
+
+    final userPoint = Point(
+      latitude: currentState.userMarker!.latitude,
+      longitude: currentState.userMarker!.latitude,
+    );
+
+    final targetPoint = Point(
+      latitude: event.shopMarker.latitude,
+      longitude: event.shopMarker.latitude,
+    );
+
+    final request = YandexDriving.requestRoutes(
+      points: [
+        RequestPoint(
+          point: userPoint,
+          requestPointType: RequestPointType.wayPoint,
+        ),
+        RequestPoint(
+          point: targetPoint,
+          requestPointType: RequestPointType.wayPoint,
+        ),
+      ],
+      drivingOptions: const DrivingOptions(
+        initialAzimuth: 0,
+        routesCount: 1,
+      ),
+    );
+
+    final route = await request.result;
+
+    emit(currentState.copyWith(routes: route.routes ?? []));
   }
 }
