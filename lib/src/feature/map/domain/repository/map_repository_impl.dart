@@ -17,11 +17,11 @@ final class MapRepositoryImpl implements MapRepository {
 
   @override
   Future<MapLocation> getCurrentLocation() async {
-    return await _locationDataProvider.getCurrentLocation();
+    return _locationDataProvider.getCurrentLocation();
   }
 
   @override
   Future<List<ShopEntity>> getShopList({ShopType? type}) async {
-    return await _shopDataProvider.getShopList();
+    return _shopDataProvider.getShopList();
   }
 }

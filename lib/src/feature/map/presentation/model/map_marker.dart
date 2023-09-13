@@ -7,7 +7,7 @@ sealed class MapMarker {
 
   abstract final String markerAsset;
 
-  MapObject createPlaceMarkObject(
+  PlacemarkMapObject createPlaceMarkObject(
     void Function(PlacemarkMapObject, Point)? onTap,
   ) {
     return PlacemarkMapObject(
@@ -33,13 +33,10 @@ sealed class MapMarker {
 
 final class ShopMarker extends MapMarker {
   ShopMarker({
-    required double latitude,
-    required double longitude,
+    required super.latitude,
+    required super.longitude,
     required this.shopId,
-  }) : super(
-          latitude: latitude,
-          longitude: longitude,
-        );
+  });
 
   final int shopId;
 
@@ -49,12 +46,9 @@ final class ShopMarker extends MapMarker {
 
 final class UserMarker extends MapMarker {
   UserMarker({
-    required double latitude,
-    required double longitude,
-  }) : super(
-          latitude: latitude,
-          longitude: longitude,
-        );
+    required super.latitude,
+    required super.longitude,
+  });
 
   @override
   String markerAsset = AssetsCatalog.icUserLocation;

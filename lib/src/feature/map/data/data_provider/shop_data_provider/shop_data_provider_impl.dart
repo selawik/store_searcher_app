@@ -49,6 +49,6 @@ class ShopDataProviderImpl with MapMapperMixin implements ShopDataProvider {
   Future<List<ShopEntity>> getShopList({ShopType? type}) async {
     await Future.delayed(const Duration(seconds: 1));
 
-    return _shopList.map((e) => shopToEntity(e)).toList();
+    return _shopList.map(shopToEntity).toList();
   }
 }

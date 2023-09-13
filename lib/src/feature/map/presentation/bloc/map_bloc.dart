@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
@@ -26,7 +27,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     on<_LoadShops>(_onLoadShops);
   }
 
-  void _onStarted(_Started event, Emitter emit) async {
+  void _onStarted(_Started event, Emitter<MapState> emit) {
     emit(const MapState.loading());
 
     if (event.controller != null) {
@@ -39,7 +40,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     }
   }
 
-  Future<void> _onZoomIn(_ZoomIn event, Emitter emit) async {
+  void _onZoomIn(_ZoomIn event, Emitter<MapState> emit) {
     final currentState = state;
 
     if (currentState is _Initialized) {
@@ -52,7 +53,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     }
   }
 
-  void _onZoomOut(_ZoomOut event, Emitter emit) {
+  void _onZoomOut(_ZoomOut event, Emitter<MapState> emit) {
     final currentState = state;
 
     if (currentState is _Initialized) {
@@ -65,7 +66,10 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     }
   }
 
-  Future<void> _onShowMyLocation(_ShowMyLocation event, Emitter emit) async {
+  Future<void> _onShowMyLocation(
+    _ShowMyLocation event,
+    Emitter<MapState> emit,
+  ) async {
     try {
       final myLocation = await _repository.getCurrentLocation();
 
@@ -79,14 +83,18 @@ class MapBloc extends Bloc<MapEvent, MapState> {
 
       final cameraPosition = await currentState.controller.getCameraPosition();
 
-      currentState.controller.moveCamera(
-        CameraUpdate.newCameraPosition(
-          CameraPosition(
-            target: point,
-            zoom: cameraPosition.zoom > 15 ? cameraPosition.zoom : 15,
-          ),
+      final newCameraPosition = CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: point,
+          zoom: cameraPosition.zoom > 15 ? cameraPosition.zoom : 15,
         ),
-        animation: const MapAnimation(duration: 0.5),
+      );
+
+      unawaited(
+        currentState.controller.moveCamera(
+          newCameraPosition,
+          animation: const MapAnimation(duration: 0.5),
+        ),
       );
 
       final userMarker = UserMarker(
@@ -96,22 +104,22 @@ class MapBloc extends Bloc<MapEvent, MapState> {
 
       emit(currentState.copyWith(userMarker: userMarker));
     } on LocationServiceIsDisabled catch (e, stack) {
-      //TODO(@selawik) Add error state
+      //TODO (@selawik) Add error state
       log(e.toString(), stackTrace: stack);
     } on NoLocationPermission catch (e, stack) {
       //TODO(@selawik) Add error state
       log(e.toString(), stackTrace: stack);
-    } catch (e, stack) {
+    } on Exception catch (e, stack) {
       //TODO(@selawik) Add error state
       log(e.toString(), stackTrace: stack);
     }
   }
 
-  Future<void> _onLoadShops(_LoadShops event, Emitter emit) async {
+  Future<void> _onLoadShops(_LoadShops event, Emitter<MapState> emit) async {
     try {
       final shopList = await _repository.getShopList();
 
-      final List<MapMarker> shopObjects = shopList
+      final shopObjects = shopList
           .map<MapMarker>(
             (e) => ShopMarker(
               latitude: e.location.latitude,
@@ -124,12 +132,12 @@ class MapBloc extends Bloc<MapEvent, MapState> {
       final currentState = state as _Initialized;
 
       emit(currentState.copyWith(shopMarkers: shopObjects));
-    } catch (e, stack) {
+    } on Exception catch (e, stack) {
       log(e.toString(), stackTrace: stack);
     }
   }
 
-  Future<void> _onBuildRoute(_BuildRoute event, Emitter emit) async {
+  Future<void> _onBuildRoute(_BuildRoute event, Emitter<MapState> emit) async {
     final currentState = state as _Initialized;
   }
 }

@@ -31,7 +31,7 @@ class MapPageBody extends StatelessWidget {
             ),
           ),
           state.maybeMap(
-            orElse: () => Container(),
+            orElse: Container.new,
             loading: (state) => const Center(
               child: CircularProgressIndicator.adaptive(),
             ),
@@ -87,9 +87,9 @@ class MapPageBody extends StatelessWidget {
 
   void _onMarkerPressed(BuildContext context, MapMarker mapMarker) {
     switch (mapMarker) {
-      case ShopMarker marker:
+      case final ShopMarker marker:
         _onShopMarkerPressed(context, marker);
-      case UserMarker marker:
+      case final UserMarker marker:
         _onUserMarkerPressed(context, marker);
     }
   }

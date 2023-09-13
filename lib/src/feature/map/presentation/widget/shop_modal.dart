@@ -4,7 +4,7 @@ class ShopModal extends StatelessWidget {
   const ShopModal({super.key});
 
   static Future<T?> show<T>(BuildContext context) async =>
-      await showModalBottomSheet<T?>(
+      showModalBottomSheet<T?>(
         context: context,
         builder: (context) {
           return const ShopModal();
@@ -14,14 +14,14 @@ class ShopModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const SizedBox(height: 32),
           ElevatedButton(
             onPressed: () {},
-            child: Text('Построить маршрут'),
+            child: const Text('Построить маршрут'),
           ),
         ],
       ),
