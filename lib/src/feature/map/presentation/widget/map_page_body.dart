@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yandex_map_test/src/common/constant/app_colors.dart';
 import 'package:yandex_map_test/src/common/theme/theme_builder.dart';
+import 'package:yandex_map_test/src/common/util/app_messenger.dart';
 import 'package:yandex_map_test/src/feature/map/presentation/bloc/map_bloc.dart';
 import 'package:yandex_map_test/src/feature/map/presentation/extensions/driving_route_extension.dart';
 import 'package:yandex_map_test/src/feature/map/presentation/model/map_marker.dart';
@@ -98,9 +99,15 @@ class MapPageBody extends StatelessWidget {
       listener: (context, state) {
         switch (state.details) {
           case final ErrorDetails details:
-            log('Error');
+            AppMessenger.showError(
+              context,
+              details.message,
+            );
           case final SuccessDetails details:
-            log('Success');
+            AppMessenger.showMessage(
+              context,
+              details.message,
+            );
           case final DialogDetails details:
             log('Dialog');
         }

@@ -31,10 +31,17 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     emit(const MapState.loading());
 
     if (event.controller != null) {
-      emit(MapState.initialized(controller: event.controller!));
+      emit(
+        MapState.initialized(
+          controller: event.controller!,
+          details: LoadingDetails(message: ''),
+        ),
+      );
 
       add(const MapEvent.loadShops());
       add(const MapEvent.showMyLocation());
+
+      emit((state as _Initialized).copyWith(details: null));
     } else {
       emit(const MapState.error());
     }
@@ -104,14 +111,39 @@ class MapBloc extends Bloc<MapEvent, MapState> {
 
       emit(currentState.copyWith(userMarker: userMarker));
     } on LocationServiceIsDisabled catch (e, stack) {
-      //TODO (@selawik) Add error state
       log(e.toString(), stackTrace: stack);
+      final currentState = state as _Initialized;
+
+      final newState = currentState.copyWith(
+        details: ErrorDetails(message: 'Сервис местоположения заблокирован'),
+      );
+
+      emit(newState);
+      emit(currentState);
     } on NoLocationPermission catch (e, stack) {
-      //TODO(@selawik) Add error state
       log(e.toString(), stackTrace: stack);
+      final currentState = state as _Initialized;
+
+      final newState = currentState.copyWith(
+        details: ErrorDetails(
+          message: 'Для получения местоположения необходимо разрешение',
+        ),
+      );
+
+      emit(newState);
+      emit(currentState);
     } on Exception catch (e, stack) {
-      //TODO(@selawik) Add error state
       log(e.toString(), stackTrace: stack);
+      final currentState = state as _Initialized;
+
+      final newState = currentState.copyWith(
+        details: ErrorDetails(
+          message: 'Произошла непредвиденная ошибка',
+        ),
+      );
+
+      emit(newState);
+      emit(currentState);
     }
   }
 
@@ -141,7 +173,17 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     final currentState = state as _Initialized;
 
     if (currentState.userMarker == null) {
-      ///emit error
+      emit(
+        currentState.copyWith(
+          details: ErrorDetails(
+            message: 'Не удалось определить ваше местоположение',
+          ),
+        ),
+      );
+
+      emit(currentState);
+
+      return;
     }
 
     emit(
@@ -179,6 +221,11 @@ class MapBloc extends Bloc<MapEvent, MapState> {
 
     final route = await request.result;
 
-    emit(currentState.copyWith(routes: route.routes ?? []));
+    final newState = currentState.copyWith(
+      routes: route.routes ?? [],
+      details: null,
+    );
+
+    emit(newState);
   }
 }
