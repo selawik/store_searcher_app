@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yandex_map_test/src/common/constant/app_colors.dart';
 import 'package:yandex_map_test/src/common/theme/theme_builder.dart';
 import 'package:yandex_map_test/src/feature/map/presentation/bloc/map_bloc.dart';
 import 'package:yandex_map_test/src/feature/map/presentation/extensions/driving_route_extension.dart';
@@ -34,12 +37,19 @@ class MapPageBody extends StatelessWidget {
               },
             ),
           ),
-          state.maybeMap(
-            orElse: Container.new,
-            loading: (state) => const Center(
-              child: CircularProgressIndicator.adaptive(),
-            ),
-          ),
+          switch (state.details) {
+            final LoadingDetails _ => Center(
+                child: Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: AppColors.white.withOpacity(0.6),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: const CircularProgressIndicator.adaptive(),
+                ),
+              ),
+            _ => Container()
+          },
           Positioned(
             left: 16,
             top: MediaQuery.paddingOf(context).top + 8,
@@ -85,7 +95,16 @@ class MapPageBody extends StatelessWidget {
           ),
         ],
       ),
-      listener: (context, state) {},
+      listener: (context, state) {
+        switch (state.details) {
+          case final ErrorDetails details:
+            log('Error');
+          case final SuccessDetails details:
+            log('Success');
+          case final DialogDetails details:
+            log('Dialog');
+        }
+      },
     );
   }
 

@@ -144,6 +144,12 @@ class MapBloc extends Bloc<MapEvent, MapState> {
       ///emit error
     }
 
+    emit(
+      currentState.copyWith(
+        details: LoadingDetails(message: ''),
+      ),
+    );
+
     final userPoint = Point(
       latitude: currentState.userMarker!.latitude,
       longitude: currentState.userMarker!.longitude,
