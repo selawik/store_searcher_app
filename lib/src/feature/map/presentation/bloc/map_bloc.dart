@@ -146,12 +146,12 @@ class MapBloc extends Bloc<MapEvent, MapState> {
 
     final userPoint = Point(
       latitude: currentState.userMarker!.latitude,
-      longitude: currentState.userMarker!.latitude,
+      longitude: currentState.userMarker!.longitude,
     );
 
     final targetPoint = Point(
       latitude: event.shopMarker.latitude,
-      longitude: event.shopMarker.latitude,
+      longitude: event.shopMarker.longitude,
     );
 
     final request = YandexDriving.requestRoutes(

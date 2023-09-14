@@ -13,33 +13,22 @@ class MapPageBody extends StatelessWidget {
   Widget build(BuildContext context) {
     final mapBloc = context.read<MapBloc>();
 
-    List<MapObject> getLitst(MapState state) {
-      final a1 = state.markers
-          .map<MapObject>(
-            (e) => e.createPlaceMarkObject(
-              (_, __) => _onMarkerPressed(context, e),
-            ),
-          )
-          .toList();
-
-      final a2 = state.routes
-          .map<MapObject>(
-            (e) => e.createPolylineMapObject(),
-          )
-          .toList();
-
-      final a = a1 + a2;
-
-      return a;
-    }
-
     return BlocConsumer<MapBloc, MapState>(
       builder: (context, state) => Stack(
         children: [
           Positioned.fill(
             child: YandexMap(
               nightModeEnabled: true,
-              mapObjects: getLitst(state),
+              mapObjects: [
+                ...state.markers.map(
+                  (e) => e.createPlaceMarkObject(
+                    (p0, p1) => _onMarkerPressed(context, e),
+                  ),
+                ),
+                ...state.routes.map(
+                  (e) => e.createPolylineMapObject(),
+                ),
+              ],
               onMapCreated: (controller) {
                 mapBloc.add(MapEvent.started(controller: controller));
               },
