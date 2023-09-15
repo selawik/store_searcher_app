@@ -157,6 +157,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
               latitude: e.location.latitude,
               longitude: e.location.longitude,
               shopId: e.id,
+              shopType: e.type,
             ),
           )
           .toList();
