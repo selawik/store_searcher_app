@@ -5,6 +5,7 @@ extension ShopTypeExtension on ShopType {
   String get imageAsset => switch (this) {
         ShopType.pyaterochka => AssetsCatalog.icPyaterochka,
         ShopType.magnit => AssetsCatalog.icMagnit,
+        ShopType.perekrestok => AssetsCatalog.icPerekrestok,
         //TODO add other cases
         _ => AssetsCatalog.icPyaterochka,
       };

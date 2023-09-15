@@ -79,6 +79,24 @@ class ShopDataProviderImpl with MapMapperMixin implements ShopDataProvider {
       ),
       type: ShopType.magnit,
     ),
+    const ShopDTO(
+      id: 9,
+      name: 'Перекресток',
+      location: LocationDTO(
+        latitude: 56.627908,
+        longitude: 47.896652,
+      ),
+      type: ShopType.perekrestok,
+    ),
+    const ShopDTO(
+      id: 11,
+      name: 'Перекресток',
+      location: LocationDTO(
+        latitude: 56.640929,
+        longitude: 47.892535,
+      ),
+      type: ShopType.perekrestok,
+    ),
   ];
 
   @override
