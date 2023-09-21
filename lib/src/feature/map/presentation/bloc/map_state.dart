@@ -54,5 +54,5 @@ final class SuccessDetails extends InitializedDetails {
 }
 
 final class LoadingDetails extends InitializedDetails {
-  LoadingDetails({required super.message});
+  LoadingDetails() : super(message: '');
 }

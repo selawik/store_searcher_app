@@ -34,7 +34,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
       emit(
         MapState.initialized(
           controller: event.controller!,
-          details: LoadingDetails(message: ''),
+          details: LoadingDetails(),
         ),
       );
 
@@ -78,6 +78,8 @@ class MapBloc extends Bloc<MapEvent, MapState> {
     Emitter<MapState> emit,
   ) async {
     try {
+      emit((state as _Initialized).copyWith(details: LoadingDetails()));
+
       final myLocation = await _repository.getCurrentLocation();
 
       //TODO(@selawik) Add mapper
@@ -109,7 +111,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
         longitude: point.longitude,
       );
 
-      emit(currentState.copyWith(userMarker: userMarker));
+      emit(currentState.copyWith(userMarker: userMarker, details: null));
     } on LocationServiceIsDisabled catch (e, stack) {
       log(e.toString(), stackTrace: stack);
       final currentState = state as _Initialized;
@@ -187,11 +189,7 @@ class MapBloc extends Bloc<MapEvent, MapState> {
       return;
     }
 
-    emit(
-      currentState.copyWith(
-        details: LoadingDetails(message: ''),
-      ),
-    );
+    emit(currentState.copyWith(details: LoadingDetails()));
 
     final userPoint = Point(
       latitude: currentState.userMarker!.latitude,
