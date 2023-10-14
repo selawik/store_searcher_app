@@ -1,6 +1,7 @@
-# yandex_map_test
+# Store searcher app
 
-A new Flutter project.
+- Bloc + freezed
+- Yandex mapkit
 
 ## Getting Started
 
